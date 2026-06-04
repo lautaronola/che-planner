@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Proyecto Final TP2",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/lautaronola/che-planner/issues"
   },
-  "homepage": "https://github.com/lautaronola/che-planner#readme"
+  "homepage": "https://github.com/lautaronola/che-planner#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.2.0"
+  }
 }
