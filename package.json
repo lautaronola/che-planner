@@ -19,6 +19,7 @@
   "homepage": "https://github.com/lautaronola/che-planner#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.2.0"
   }
 }
