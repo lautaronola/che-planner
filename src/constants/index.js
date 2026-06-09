@@ -16,6 +16,9 @@ const ALLOWED_TYPES = [
   "image/tiff",
 ];
 const MAX_SIZE_INVOICE_MB = 10;
+const PAYMENT_NOT_FOUND = "Payment not found";
+const PAYMENT_INVALID_AMOUNT = "Amount must be greater than 0";
+const PAYMENT_INVALID_SPLIT = "splitBetween must be a non-empty array";
 
 export {
   URI_MONGO_MISSING,
@@ -30,4 +33,7 @@ export {
   ALLOWED_TYPES,
   MAX_SIZE_INVOICE_MB,
   INVOICE_FORMAT_NOT_SUPPORTED_ERROR,
+  PAYMENT_NOT_FOUND,
+  PAYMENT_INVALID_AMOUNT,
+  PAYMENT_INVALID_SPLIT,
 };
