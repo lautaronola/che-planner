@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { registerUser, loginUser, getUserById } from "../data/userData";
 import {
   USER_ALREADY_EXISTS,
@@ -22,7 +23,11 @@ export async function login(email, password) {
     throw new Error(LOGIN_FAILED_ERROR);
   }
   const { password: _password, ...userWithoutPassword } = user;
-  return userWithoutPassword;
+
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "2h",
+  });
+  return { user: userWithoutPassword, token };
 }
 
 export async function getUser(id) {
