@@ -21,7 +21,7 @@ export async function getPaymentsByTrip(tripId) {
   return db.collection("payments").find({ tripId: new ObjectId(tripId) }).toArray();
 }
 
-// Marcar pago saldado
+// Marcar pago saldados
 
 export async function settlePayment(paymentId) {
   const db = await getDb();
