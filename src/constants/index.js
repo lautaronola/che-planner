@@ -20,6 +20,14 @@ const PAYMENT_NOT_FOUND = "Payment not found";
 const PAYMENT_INVALID_AMOUNT = "Amount must be greater than 0";
 const PAYMENT_INVALID_SPLIT = "splitBetween must be a non-empty array";
 
+
+
+
+
+
+const TRIP_ALREADY_EXISTS = "Trip already exist";
+const TRIP_NOT_FOUND_ERROR = "Trip not found";
+
 export {
   URI_MONGO_MISSING,
   DATABASE_NOT_CONNECTED,
@@ -28,6 +36,7 @@ export {
   USER_NOT_FOUND_ERROR,
   USER_REGISTER_FAILED_ERROR,
   UNAUTHORIZED_ERROR,
+<<<<<<< Updated upstream
   INVOICE_PROCESS_FAILED_ERROR,
   INVOICE_NOT_RECEIVED_ERROR,
   ALLOWED_TYPES,
@@ -36,4 +45,8 @@ export {
   PAYMENT_NOT_FOUND,
   PAYMENT_INVALID_AMOUNT,
   PAYMENT_INVALID_SPLIT,
+=======
+  TRIPS_ALREADY_EXISTS,
+  TRIPS_NOT_FOUND_ERROR
+>>>>>>> Stashed changes
 };
