@@ -1,8 +1,10 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+
 import userRoutes from "./routes/userRoutes.js";
 import invoiceRoutes from "./routes/invoiceRoutes.js";
+import tripRoutes from "./routes/tripRoutes.js";
 
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(morgan("dev"));
 
 app.use("/api/users", userRoutes);
 app.use("/api/invoices", invoiceRoutes);
+app.use("/api/trips", tripRoutes);
 
 app.get("/", (req, res) => {
   res.send("Bienvenidos a Che-planner");
