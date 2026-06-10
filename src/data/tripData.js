@@ -45,7 +45,7 @@ export async function getTripById(id) {
   return trip;
 }
 
-export async function getTripsByUser(userId) {
+export async function getTripByUser(userId) {
   const db = await getDb();
 
   const trips = await db.collection("trips")
