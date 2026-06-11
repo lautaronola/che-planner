@@ -1,0 +1,52 @@
+import {
+  createNewTrip,
+  getTrip,
+  getUserTrips,
+  addMember,
+} from "../services/tripService.js";
+
+export async function createTripController(req, res) {
+  const { name } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const trip = await createNewTrip(name, userId);
+    res.status(201).json(trip);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+export async function getTripByIdController(req, res) {
+  const { id } = req.params;
+
+  try {
+    const trip = await getTrip(id);
+    res.status(200).json(trip);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export async function getUserTripsController(req, res) {
+  const userId = req.user.id;
+
+  try {
+    const trips = await getUserTrips(userId);
+    res.status(200).json(trips);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+export async function addMemberController(req, res) {
+  const { email } = req.body;
+  const { tripId } = req.params;
+
+  try {
+    const trip = await addMember(email, tripId);
+    res.status(200).json(trip);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
