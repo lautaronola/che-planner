@@ -44,3 +44,12 @@ export async function getUserById(id) {
   }
   return user;
 }
+
+export async function getUserByEmail(email) {
+  const db = await getDb();
+  const user = await db.collection("users").findOne({ email });
+  if (!user) {
+    throw new Error(USER_NOT_FOUND_ERROR);
+  }
+  return user;
+}

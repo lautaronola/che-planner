@@ -5,9 +5,9 @@ import {
   getTripById,
   getTripByUser,
   addMemberByEmail,
-} from "../data/tripsData.js";
+} from "../data/tripData.js";
 
-import { getUserByEmail } from "../data/usersData.js";
+import { getUserByEmail } from "../data/userData.js";
 
 import {
   TRIP_INVALID_NAME,

@@ -7,14 +7,7 @@ import {
 } from "../constants/index.js";
 
 export async function register(name, email, password) {
-  try {
-    return await registerUser(name, email, password);
-  } catch (error) {
-    if (error.message === USER_ALREADY_EXISTS) {
-      throw new Error(USER_REGISTER_FAILED_ERROR);
-    }
-    throw error;
-  }
+  return await registerUser(name, email, password);
 }
 
 export async function login(email, password) {
