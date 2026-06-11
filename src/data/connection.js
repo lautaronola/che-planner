@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { URI_MONGO_MISSING } from "../constants";
+import { URI_MONGO_MISSING } from "../constants/index.js";
 
 const uri = process.env.MONGO_URI;
 

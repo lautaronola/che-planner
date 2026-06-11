@@ -1,4 +1,4 @@
-import { register, login } from "../services/userService";
+import { register, login } from "../services/userService.js";
 
 export async function registerUserController(req, res) {
   const { name, email, password } = req.body;
