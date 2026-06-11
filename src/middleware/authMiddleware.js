@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import { UNAUTHORIZED_ERROR } from "../constants";
+import { UNAUTHORIZED_ERROR } from "../constants/index.js";
 
-export async function authenticateToken(req, res, next) {
+export async function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     return res.status(401).json({ message: UNAUTHORIZED_ERROR });
