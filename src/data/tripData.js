@@ -1,4 +1,4 @@
-import { getDb } from "./connection";
+import { getDb } from "./connection.js";
 import { ObjectId } from "mongodb";
 import bcrypt from "bcrypt";
 import {
@@ -6,7 +6,7 @@ import {
   TRIP_NOT_FOUND_ERROR,
   USER_NOT_FOUND_ERROR,
   //LOGIN_FAILED_ERROR,
-} from "../constants";
+} from "../constants/index.js";
 
 export async function createTrip(name, userId) {
   const db = await getDb();
