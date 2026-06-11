@@ -44,7 +44,7 @@ export async function addMember(email, tripId) {
     throw new Error(TRIP_NOT_FOUND_ERROR);
   }
 
-  if (trip.status !== true) {
+  if (trip.status !== "active") {
     throw new Error(TRIP_CLOSED_ERROR);
   }
 
