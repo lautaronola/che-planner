@@ -5,6 +5,7 @@ import {
   getTripById,
   getTripByUser,
   addMemberByEmail,
+  closeTrip,
 } from "../data/tripData.js";
 
 import { getUserByEmail } from "../data/userData.js";
@@ -44,7 +45,7 @@ export async function addMember(email, tripId) {
     throw new Error(TRIP_NOT_FOUND_ERROR);
   }
 
-  if (trip.status !== "active") {
+  if (!trip.status) {
     throw new Error(TRIP_CLOSED_ERROR);
   }
 
@@ -65,4 +66,14 @@ export async function addMember(email, tripId) {
   }
 
   return await addMemberByEmail(email, tripId);
+}
+
+export async function closeTripById(tripId) {
+  const trip = await getTripById(tripId);
+
+  if (!trip.status) {
+    throw new Error(TRIP_CLOSED_ERROR);
+  }
+
+  return await closeTrip(tripId);
 }

@@ -4,6 +4,7 @@ import {
   getTripByIdController,
   getUserTripsController,
   addMemberController,
+  closeTripController,
 } from "../controllers/tripController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
@@ -13,5 +14,6 @@ router.post("/", authMiddleware, createTripController);
 router.get("/", authMiddleware, getUserTripsController);
 router.get("/:id", authMiddleware, getTripByIdController);
 router.patch("/:tripId/members", authMiddleware, addMemberController);
+router.patch("/:id/close", authMiddleware, closeTripController);
 
 export default router;
