@@ -9,7 +9,7 @@ const UNAUTHORIZED_ERROR = "Unauthorized";
 const INVOICE_PROCESS_FAILED_ERROR = "Invoice processing failed";
 const INVOICE_NOT_RECEIVED_ERROR = "Invoice not received";
 const INVOICE_FORMAT_NOT_SUPPORTED_ERROR = "Invoice format not supported";
-const USER_ALREADY_IN_TRIP = "You are already on this trip"
+const USER_ALREADY_IN_TRIP = "You are already on this trip";
 
 const ALLOWED_TYPES = [
   "application/pdf",
@@ -27,7 +27,8 @@ const PAYMENT_INVALID_SPLIT = "splitBetween must be a non-empty array";
 const TRIP_ALREADY_EXISTS = "Trip already exist";
 const TRIP_NOT_FOUND_ERROR = "Trip not found";
 const TRIP_INVALID_NAME = "Invalid name for the trip, try a another";
-const TRIP_CLOSED_ERROR = "Closed trip"
+const TRIP_CLOSED_ERROR = "Closed trip";
+const TRIP_CLOSED_SUCCESS = "Trip closed successfully";
 
 export {
   URI_MONGO_MISSING,
@@ -49,5 +50,5 @@ export {
   TRIP_NOT_FOUND_ERROR,
   TRIP_INVALID_NAME,
   TRIP_CLOSED_ERROR,
-  USER_ALREADY_IN_TRIP
+  USER_ALREADY_IN_TRIP,
 };

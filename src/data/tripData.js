@@ -22,7 +22,7 @@ export async function createTrip(name, userId) {
     name,
     createdBy: new ObjectId(userId),
     members: [new ObjectId(userId)],
-    status: "active",
+    status: true,
     createdAt: new Date(),
   });
 
@@ -54,6 +54,21 @@ export async function getTripByUser(userId) {
     .toArray();
 
   return trips;
+}
+
+export async function closeTrip(id) {
+  const db = await getDb();
+
+  const result = await db.collection("trips").updateOne(
+    { _id: new ObjectId(id) },
+    { $set: { status: false } },
+  );
+
+  if (result.matchedCount === 0) {
+    throw new Error(TRIP_NOT_FOUND_ERROR);
+  }
+
+  return result;
 }
 
 export async function addMemberByEmail(email, tripId) {
