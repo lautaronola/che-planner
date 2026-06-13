@@ -4,8 +4,6 @@ import {
   registerUserController,
   loginUserController,
 } from "../controllers/userController.js";
-import { authMiddleware } from "../middleware/authMiddleware.js";
-
 const router = express.Router();
 
 router.post("/register", registerUserController);

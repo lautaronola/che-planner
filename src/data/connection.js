@@ -1,5 +1,8 @@
 import { MongoClient } from "mongodb";
-import { URI_MONGO_MISSING, DATABASE_NOT_CONNECTED } from "../constants/index.js";
+import {
+  URI_MONGO_MISSING,
+  DATABASE_NOT_CONNECTED,
+} from "../constants/index.js";
 
 const uri = process.env.MONGO_URI;
 

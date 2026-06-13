@@ -1,11 +1,9 @@
 import { getDb } from "./connection.js";
 import { ObjectId } from "mongodb";
-import bcrypt from "bcrypt";
 import {
   TRIP_ALREADY_EXISTS,
   TRIP_NOT_FOUND_ERROR,
   USER_NOT_FOUND_ERROR,
-  //LOGIN_FAILED_ERROR,
 } from "../constants/index.js";
 
 export async function createTrip(name, userId) {
@@ -48,7 +46,8 @@ export async function getTripById(id) {
 export async function getTripByUser(userId) {
   const db = await getDb();
 
-  const trips = await db.collection("trips")
+  const trips = await db
+    .collection("trips")
     .find({
       members: new ObjectId(userId),
     })
@@ -80,7 +79,7 @@ export async function addMemberByEmail(email, tripId) {
       $addToSet: {
         members: user._id,
       },
-    }
+    },
   );
 
   return user;
