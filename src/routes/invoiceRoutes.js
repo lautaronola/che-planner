@@ -2,7 +2,11 @@ import express from "express";
 import multer from "multer";
 import { analyzeInvoiceController } from "../controllers/invoiceController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
-import { ALLOWED_TYPES, MAX_SIZE_INVOICE_MB } from "../constants/index.js";
+import {
+  ALLOWED_TYPES,
+  MAX_SIZE_INVOICE_MB,
+  INVOICE_FORMAT_NOT_SUPPORTED_ERROR,
+} from "../constants/index.js";
 
 const invoiceRouter = express.Router();
 
