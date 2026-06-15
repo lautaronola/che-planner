@@ -6,6 +6,7 @@ import {
   getTripByUser,
   addMemberByEmail,
   closeTrip,
+  getTripsByDestination,
 } from "../data/tripData.js";
 
 import { getUserByEmail } from "../data/userData.js";
@@ -36,6 +37,16 @@ export async function getUserTrips(userId) {
   }
 
   return await getTripByUser(userId);
+}
+
+export async function getDestinationTrips(destination) {
+
+  if (!destination || destination.trim() === "")
+    {
+      throw new Error(TRIP_NOT_FOUND_ERROR);
+    }
+
+    return await getTripByDestination(destination);
 }
 
 export async function addMember(email, tripId) {

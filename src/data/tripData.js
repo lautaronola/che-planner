@@ -6,7 +6,7 @@ import {
   USER_NOT_FOUND_ERROR,
 } from "../constants/index.js";
 
-export async function createTrip(name, userId) {
+export async function createTrip(name, userId, destination) {
   const db = await getDb();
 
   const existingTrip = await db.collection("trips").findOne({
@@ -24,6 +24,7 @@ export async function createTrip(name, userId) {
     members: [new ObjectId(userId)],
     status: true,
     createdAt: new Date(),
+    destination: destination
   });
 
   return result;
@@ -50,6 +51,24 @@ export async function getTripByUser(userId) {
     .collection("trips")
     .find({
       members: new ObjectId(userId),
+    })
+    .toArray();
+
+  return trips;
+}
+
+export async function getTripsByDestination(destination) {
+  const db = await getDb();
+
+  //Búsqueda sin distinguir mayúsculas/minúsculas
+
+  const trips = await db
+    .collection("trips")
+    .find({
+      destination: {
+        $regex: `^${destination}$`,
+        $options: "i",
+      },
     })
     .toArray();
 
