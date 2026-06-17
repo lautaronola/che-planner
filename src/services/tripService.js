@@ -6,7 +6,6 @@ import {
   getTripByUser,
   addMemberByEmail,
   closeTrip,
-  getTripsByDestination,
 } from "../data/tripData.js";
 
 import { getUserByEmail } from "../data/userData.js";
@@ -40,13 +39,11 @@ export async function getUserTrips(userId) {
 }
 
 export async function getDestinationTrips(destination) {
+  if (!destination || destination.trim() === "") {
+    throw new Error(TRIP_NOT_FOUND_ERROR);
+  }
 
-  if (!destination || destination.trim() === "")
-    {
-      throw new Error(TRIP_NOT_FOUND_ERROR);
-    }
-
-    return await getTripByDestination(destination);
+  return await getTripByDestination(destination);
 }
 
 export async function addMember(email, tripId) {
@@ -69,7 +66,7 @@ export async function addMember(email, tripId) {
   const userId = user._id.toString();
 
   const isAlreadyMember = trip.members.some(
-    memberId => memberId.toString() === userId
+    (memberId) => memberId.toString() === userId,
   );
 
   if (isAlreadyMember || trip.createdBy.toString() === userId) {
