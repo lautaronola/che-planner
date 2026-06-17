@@ -1,10 +1,6 @@
 import jwt from "jsonwebtoken";
 import { registerUser, loginUser, getUserById } from "../data/userData.js";
-import {
-  USER_ALREADY_EXISTS,
-  USER_REGISTER_FAILED_ERROR,
-  LOGIN_FAILED_ERROR,
-} from "../constants/index.js";
+import { LOGIN_FAILED_ERROR } from "../constants/index.js";
 
 export async function register(name, email, password) {
   return await registerUser(name, email, password);

@@ -30,6 +30,10 @@ const TRIP_INVALID_NAME = "Invalid name for the trip, try a another";
 const TRIP_CLOSED_ERROR = "Closed trip";
 const TRIP_CLOSED_SUCCESS = "Trip closed successfully";
 
+const EXPENSE_NOT_FOUND = "Expenses not found";
+const EXPENSE_INVALID_AMOUNT = "Expenses amount must be greater than 0";
+const EXPENSE_INVALID_SPLIT = "Expenses splitBetween must be a non-empty array";
+
 export {
   URI_MONGO_MISSING,
   DATABASE_NOT_CONNECTED,
@@ -52,4 +56,7 @@ export {
   TRIP_CLOSED_ERROR,
   USER_ALREADY_IN_TRIP,
   TRIP_CLOSED_SUCCESS,
+  EXPENSE_NOT_FOUND,
+  EXPENSE_INVALID_AMOUNT,
+  EXPENSE_INVALID_SPLIT,
 };
