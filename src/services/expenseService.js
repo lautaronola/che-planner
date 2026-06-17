@@ -2,7 +2,7 @@ import {
   createExpense,
   getExpensesByTrip,
   getExpenseById,
-} from "../data/expensesData.js";
+} from "../data/expenseData.js";
 import {
   EXPENSE_INVALID_AMOUNT,
   EXPENSE_INVALID_SPLIT,
