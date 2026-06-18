@@ -53,3 +53,21 @@ export async function getUserByEmail(email) {
   }
   return user;
 }
+
+export async function findUsers(query) {
+  const db = await getDb();
+  const users = await db
+    .collection("users")
+    .find(
+      {
+        $or: [
+          { name: { $regex: query, $options: "i" } },
+          { email: { $regex: query, $options: "i" } },
+        ],
+      },
+      { projection: { password: 0 } }
+    )
+    .limit(10)
+    .toArray();
+  return users;
+}

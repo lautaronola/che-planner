@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { registerUser, loginUser, getUserById } from "../data/userData.js";
+import { registerUser, loginUser, getUserById, findUsers } from "../data/userData.js";
 import { LOGIN_FAILED_ERROR } from "../constants/index.js";
 
 export async function register(name, email, password) {
@@ -21,4 +21,11 @@ export async function login(email, password) {
 
 export async function getUser(id) {
   return await getUserById(id);
+}
+
+export async function searchUsers(query) {
+  if (!query || query.trim() === "") {
+    return [];
+  }
+  return await findUsers(query.trim());
 }

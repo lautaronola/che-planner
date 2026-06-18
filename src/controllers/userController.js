@@ -1,5 +1,4 @@
-
-import { register, login, getUser } from "../services/userService.js";
+import { register, login, getUser, searchUsers } from "../services/userService.js";
 
 export async function getUserController(req, res) {
   const { id } = req.params;
@@ -26,6 +25,16 @@ export async function loginUserController(req, res) {
   try {
     const user = await login(email, password);
     res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+export async function searchUsersController(req, res) {
+  const { search } = req.query;
+  try {
+    const users = await searchUsers(search);
+    res.status(200).json(users);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
