@@ -2,14 +2,19 @@ import {
   addPayment,
   getPayments,
   calculateDebts,
-  settle,
 } from "../services/paymentService.js";
 
 export async function addPaymentController(req, res) {
   const { tripId, amount, description, splitBetween } = req.body;
   const payerId = req.user.id;
   try {
-    const payment = await addPayment(tripId, payerId, amount, description, splitBetween);
+    const payment = await addPayment(
+      tripId,
+      payerId,
+      amount,
+      description,
+      splitBetween,
+    );
     res.status(201).json(payment);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -33,15 +38,5 @@ export async function calculateDebtsController(req, res) {
     res.status(200).json(debts);
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
-}
-
-export async function settlePaymentController(req, res) {
-  const { paymentId } = req.params;
-  try {
-    await settle(paymentId);
-    res.status(200).json({ message: "Payment settled" });
-  } catch (error) {
-    res.status(404).json({ message: error.message });
   }
 }
