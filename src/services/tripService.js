@@ -18,6 +18,10 @@ import {
   TRIP_NOT_FOUND_ERROR,
 } from "../constants/index.js";
 
+import { getExpensesByTrip } from "../data/expenseData.js"
+
+import { calculateDebts } from "./paymentService.js";
+
 export async function createNewTrip(name, userId) {
   if (!name || name.trim() === "" || name.trim().length > 20) {
     throw new Error(TRIP_INVALID_NAME);
@@ -84,4 +88,18 @@ export async function closeTripById(tripId) {
   }
 
   return await closeTrip(tripId);
+}
+
+export async function getTripSummary(tripId) {
+  const [trip, expenses, debts] = await Promise.all([
+    getTripById(tripId),
+    getExpensesByTrip(tripId),
+    calculateDebts(tripId)
+  ]);
+
+  const totalDebt = Math.round(
+      expenses.reduce((sum, e) => sum + e.totalAmount, 0) * 100
+    ) / 100;
+
+  return {trip, totalDebt, expenses, debts, totalDebtPending: debts.totalDebt};
 }

@@ -4,7 +4,8 @@ import {
   getUserTrips,
   addMember,
   closeTripById,
-  getDestinationTrips
+  getDestinationTrips,
+  getTripSummary
 } from "../services/tripService.js";
 import { TRIP_CLOSED_ERROR, TRIP_CLOSED_SUCCESS } from "../constants/index.js";
 
@@ -71,6 +72,17 @@ export async function addMemberController(req, res) {
   try {
     const trip = await addMember(email, tripId);
     res.status(200).json(trip);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+export async function getTripSummaryController(req, res) {
+  const { tripId } = req.params;
+
+  try {
+    const summary = await getTripSummary(tripId);
+    res.status(200).json(summary);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
