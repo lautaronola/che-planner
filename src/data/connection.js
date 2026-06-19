@@ -5,8 +5,8 @@ import {
 } from "../constants/index.js";
 
 //DNS para que le funcione a Julián
-//import dns from "dns";
-//dns.setServers(["8.8.8.8", "8.8.4.4"]);
+import dns from "dns";
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const uri = process.env.MONGO_URI;
 
