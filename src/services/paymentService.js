@@ -1,4 +1,4 @@
-import { createPayment, getPaymentsByTrip } from "../data/paymentsData.js";
+import { createPayment, getPaymentsByTrip } from "../data/paymentData.js";
 import { getExpensesByTrip } from "../data/expenseData.js";
 import { PAYMENT_INVALID_AMOUNT } from "../constants/index.js";
 
