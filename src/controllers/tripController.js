@@ -78,10 +78,10 @@ export async function addMemberController(req, res) {
 }
 
 export async function getTripSummaryController(req, res) {
-  const { tripId } = req.params;
+  const { id } = req.params;
 
   try {
-    const summary = await getTripSummary(tripId);
+    const summary = await getTripSummary(id);
     res.status(200).json(summary);
   } catch (error) {
     res.status(400).json({ message: error.message });

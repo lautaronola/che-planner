@@ -31,24 +31,24 @@ export async function calculateDebts(tripId) {
     }
   }
 
-  for (const payment of payments) {
+for (const payment of payments) {
     const from = payment.from.toString();
     const to = payment.to.toString();
     const key = `${from}->${to}`;
     const reverseKey = `${to}->${from}`;
 
-    if (net[key]) {
-      net[key] -= payment.amount;
-      if (net[key] < 0) {
-        net[reverseKey] = (net[reverseKey] || 0) + Math.abs(net[key]);
-        delete net[key];
-      } else if (net[key] === 0) {
-        delete net[key];
+    if (netDebts[key]) {
+      netDebts[key] -= payment.amount;
+      if (netDebts[key] < 0) {
+        netDebts[reverseKey] = (netDebts[reverseKey] || 0) + Math.abs(netDebts[key]);
+        delete netDebts[key];
+      } else if (netDebts[key] === 0) {
+        delete netDebts[key];
       }
     }
   }
 
-  const debts = Object.entries(net).map(([key, amount]) => {
+  const debts = Object.entries(netDebts).map(([key, amount]) => {
     const [debtorId, creditorId] = key.split("->");
     return { debtorId, creditorId, amount: Math.round(amount * 100) / 100 };
   });
