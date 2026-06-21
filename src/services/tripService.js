@@ -22,12 +22,12 @@ import { getExpensesByTrip } from "../data/expenseData.js"
 
 import { calculateDebts } from "./paymentService.js";
 
-export async function createNewTrip(name, userId) {
+export async function createNewTrip(name, userId, destination) {
   if (!name || name.trim() === "" || name.trim().length > 20) {
     throw new Error(TRIP_INVALID_NAME);
   }
 
-  return await createTrip(name.trim(), userId);
+return await createTrip(name.trim(), userId, destination);
 }
 
 export async function getTrip(id) {

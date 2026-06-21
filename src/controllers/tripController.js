@@ -10,11 +10,11 @@ import {
 import { TRIP_CLOSED_ERROR, TRIP_CLOSED_SUCCESS } from "../constants/index.js";
 
 export async function createTripController(req, res) {
-  const { name } = req.body;
+  const { name, destination } = req.body;
   const userId = req.user.id;
 
   try {
-    const trip = await createNewTrip(name, userId);
+    const trip = await createNewTrip(name, userId, destination);
     res.status(201).json(trip);
   } catch (error) {
     res.status(400).json({ message: error.message });
