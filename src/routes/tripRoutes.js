@@ -18,7 +18,7 @@ router.post("/", authMiddleware, createTripController);
 router.get("/", authMiddleware, getUserTripsController);
 router.get("/destination/:destination", authMiddleware, getDestinationTripsController);
 router.patch("/:id/close", authMiddleware, closeTripController);
-router.get("/:tripId/summary", authMiddleware, getTripSummaryController);
+router.get("/:id/summary", authMiddleware, getTripSummaryController);
 router.get("/:id", authMiddleware, getTripByIdController);
 router.patch("/:tripId/members", authMiddleware, addMemberController);
 
