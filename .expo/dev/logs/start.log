@@ -1,0 +1,6 @@
+{"_e":"root:init","_t":1781798105115,"format":"v0-jsonl","version":"56.1.16"}
+{"_e":"env:mode","_t":1781798105116,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1781798105119,"mode":"development","files":["../../../.env"],"env":{"BLOB-SERVICES":"http://placeholder.com","JWT_SECRET":"miclavesecreta123","KEY-BLOB":"placeholder","KEY-OCR":"placeholder","MONGO_URI":"mongodb+srv://laxsabrina1_db_user:FvgcVT51gdwtrvdB@cluster0.ojpsmtc.mongodb.net/che_planner?appName=Cluster0","PORT":"3000","URL-OCR":"http://placeholder.com"}}
+{"_e":"devserver:start","_t":1781798105311,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1781798105586,"serverRoot":"../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"metro:instantiate","_t":1781798105987,"atlas":false,"workers":6,"host":"::","port":8081}
