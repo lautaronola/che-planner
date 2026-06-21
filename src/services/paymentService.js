@@ -3,9 +3,7 @@ import { getExpensesByTrip } from "../data/expenseData.js";
 import { PAYMENT_INVALID_AMOUNT } from "../constants/index.js";
 
 export async function addPayment(tripId, from, to, amount) {
-  // se hacen validaciònes antres de pasar la info a data (o sea que hable con mongo)
   if (!amount || amount <= 0) throw new Error(PAYMENT_INVALID_AMOUNT);
-
   return await createPayment(tripId, from, to, amount);
 }
 
@@ -19,7 +17,7 @@ export async function calculateDebts(tripId) {
     getPaymentsByTrip(tripId),
   ]);
 
-  const netDebts = {}; // "deudorId->acreedor": amount
+  const netDebts = {};
 
   for (const expense of expenses) {
     const creditor = expense.paidBy.toString();
@@ -37,18 +35,18 @@ export async function calculateDebts(tripId) {
     const key = `${from}->${to}`;
     const reverseKey = `${to}->${from}`;
 
-    if (net[key]) {
-      net[key] -= payment.amount;
-      if (net[key] < 0) {
-        net[reverseKey] = (net[reverseKey] || 0) + Math.abs(net[key]);
-        delete net[key];
-      } else if (net[key] === 0) {
-        delete net[key];
+    if (netDebts[key]) {
+      netDebts[key] -= payment.amount;
+      if (netDebts[key] < 0) {
+        netDebts[reverseKey] = (netDebts[reverseKey] || 0) + Math.abs(netDebts[key]);
+        delete netDebts[key];
+      } else if (netDebts[key] === 0) {
+        delete netDebts[key];
       }
     }
   }
 
-  const debts = Object.entries(net).map(([key, amount]) => {
+  const debts = Object.entries(netDebts).map(([key, amount]) => {
     const [debtorId, creditorId] = key.split("->");
     return { debtorId, creditorId, amount: Math.round(amount * 100) / 100 };
   });
