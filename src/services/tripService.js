@@ -8,7 +8,7 @@ import {
   closeTrip,
 } from "../data/tripData.js";
 
-import { getUserByEmail } from "../data/userData.js";
+import { getUserByEmail, getUserById } from "../data/userData.js";
 
 import {
   TRIP_INVALID_NAME,
@@ -101,5 +101,22 @@ export async function getTripSummary(tripId) {
       expenses.reduce((sum, e) => sum + e.totalAmount, 0) * 100
     ) / 100;
 
-  return {trip, totalDebt, expenses, debts, totalDebtPending: debts.totalDebt};
+  const members = await Promise.all(
+    (trip.members || []).map(async (memberId) => {
+      try {
+        const user = await getUserById(memberId.toString());
+        return { _id: user._id.toString(), name: user.name, email: user.email };
+      } catch {
+        return { _id: memberId.toString(), name: null, email: null };
+      }
+    })
+  );
+
+  return {
+    trip: { ...trip, createdBy: trip.createdBy?.toString(), members },
+    totalDebt,
+    expenses,
+    debts,
+    totalDebtPending: debts.totalDebt,
+  };
 }

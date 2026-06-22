@@ -5,16 +5,10 @@ import {
 } from "../services/paymentService.js";
 
 export async function addPaymentController(req, res) {
-  const { tripId, amount, description, splitBetween } = req.body;
+  const { tripId, to, amount } = req.body;
   const payerId = req.user.id;
   try {
-    const payment = await addPayment(
-      tripId,
-      payerId,
-      amount,
-      description,
-      splitBetween,
-    );
+    const payment = await addPayment(tripId, payerId, to, amount);
     res.status(201).json(payment);
   } catch (error) {
     res.status(400).json({ message: error.message });
