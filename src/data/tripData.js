@@ -44,6 +44,28 @@ export async function getTripById(id) {
   return trip;
 }
 
+export async function getTripWithMembers(id) {
+  const db = await getDb();
+
+  const trip = await db.collection("trips").findOne({ _id: new ObjectId(id) });
+
+  if (!trip) throw new Error(TRIP_NOT_FOUND_ERROR);
+
+  const memberIds = trip.members.map((m) => new ObjectId(m.toString()));
+  const users = await db
+    .collection("users")
+    .find({ _id: { $in: memberIds } })
+    .toArray();
+
+  trip.members = users.map((u) => ({
+    _id: u._id,
+    name: u.name,
+    email: u.email,
+  }));
+
+  return trip;
+}
+
 export async function getTripByUser(userId) {
   const db = await getDb();
 

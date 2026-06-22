@@ -3,9 +3,9 @@ import {
   getExpensesByTrip,
   getExpenseById,
 } from "../data/expenseData.js";
+import { getTripById } from "../data/tripData.js";
 import {
   EXPENSE_INVALID_AMOUNT,
-  EXPENSE_INVALID_SPLIT,
   EXPENSE_NOT_FOUND,
 } from "../constants/index.js";
 
@@ -19,11 +19,15 @@ export async function addExpense(
   items,
 ) {
   if (!totalAmount || totalAmount <= 0) throw new Error(EXPENSE_INVALID_AMOUNT);
-  if (!splitBetween || splitBetween.length === 0)
-    throw new Error(EXPENSE_INVALID_SPLIT);
 
-  const share = Math.round((totalAmount / splitBetween.length) * 100) / 100;
-  const splits = splitBetween.map((userId) => ({ userId, amount: share }));
+  let participants = splitBetween;
+  if (!participants || participants.length === 0) {
+    const trip = await getTripById(tripId);
+    participants = trip.members.map((m) => m.toString());
+  }
+
+  const share = Math.round((totalAmount / participants.length) * 100) / 100;
+  const splits = participants.map((userId) => ({ userId, amount: share }));
 
   return await createExpense(
     tripId,
