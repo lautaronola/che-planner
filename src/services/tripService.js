@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 import {
   createTrip,
   getTripById,
+  getTripWithMembers,
   getTripByUser,
   addMemberByEmail,
   closeTrip,
@@ -92,7 +93,7 @@ export async function closeTripById(tripId) {
 
 export async function getTripSummary(tripId) {
   const [trip, expenses, debts] = await Promise.all([
-    getTripById(tripId),
+    getTripWithMembers(tripId),
     getExpensesByTrip(tripId),
     calculateDebts(tripId)
   ]);
