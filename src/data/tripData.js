@@ -3,7 +3,6 @@ import { ObjectId } from "mongodb";
 import {
   TRIP_ALREADY_EXISTS,
   TRIP_NOT_FOUND_ERROR,
-  USER_NOT_FOUND_ERROR,
 } from "../constants/index.js";
 
 export async function createTrip(name, userId, destination) {
@@ -112,31 +111,11 @@ export async function closeTrip(id) {
   return result;
 }
 
-export async function addMemberByEmail(email, tripId) {
+export async function addMemberToTrip(userId, tripId) {
   const db = await getDb();
-
-  const trip = await db.collection("trips").findOne({
-    _id: new ObjectId(tripId),
-  });
-
-  if (!trip) {
-    throw new Error(TRIP_NOT_FOUND_ERROR);
-  }
-
-  const user = await db.collection("users").findOne({ email });
-
-  if (!user) {
-    throw new Error(USER_NOT_FOUND_ERROR);
-  }
 
   await db.collection("trips").updateOne(
     { _id: new ObjectId(tripId) },
-    {
-      $addToSet: {
-        members: user._id,
-      },
-    },
+    { $addToSet: { members: new ObjectId(userId) } },
   );
-
-  return user;
 }
