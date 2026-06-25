@@ -5,7 +5,7 @@ import {
   getTripById,
   getTripWithMembers,
   getTripByUser,
-  addMemberByEmail,
+  addMemberToTrip,
   closeTrip,
 } from "../data/tripData.js";
 
@@ -54,19 +54,11 @@ export async function getDestinationTrips(destination) {
 export async function addMember(email, tripId) {
   const trip = await getTripById(tripId);
 
-  if (!trip) {
-    throw new Error(TRIP_NOT_FOUND_ERROR);
-  }
-
   if (!trip.status) {
     throw new Error(TRIP_CLOSED_ERROR);
   }
 
   const user = await getUserByEmail(email);
-
-  if (!user) {
-    throw new Error(USER_NOT_FOUND_ERROR);
-  }
 
   const userId = user._id.toString();
 
@@ -78,7 +70,8 @@ export async function addMember(email, tripId) {
     throw new Error(USER_ALREADY_IN_TRIP);
   }
 
-  return await addMemberByEmail(email, tripId);
+  await addMemberToTrip(user._id, tripId);
+  return user;
 }
 
 export async function closeTripById(tripId) {

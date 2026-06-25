@@ -23,6 +23,7 @@ const MAX_SIZE_INVOICE_MB = 10;
 const PAYMENT_NOT_FOUND = "Payment not found";
 const PAYMENT_INVALID_AMOUNT = "Amount must be greater than 0";
 const PAYMENT_INVALID_SPLIT = "splitBetween must be a non-empty array";
+const PAYMENT_NO_DEBT = "no existe deuda a saldar";
 
 const TRIP_ALREADY_EXISTS = "Trip already exist";
 const TRIP_NOT_FOUND_ERROR = "Trip not found";
@@ -50,6 +51,7 @@ export {
   PAYMENT_NOT_FOUND,
   PAYMENT_INVALID_AMOUNT,
   PAYMENT_INVALID_SPLIT,
+  PAYMENT_NO_DEBT,
   TRIP_ALREADY_EXISTS,
   TRIP_NOT_FOUND_ERROR,
   TRIP_INVALID_NAME,
